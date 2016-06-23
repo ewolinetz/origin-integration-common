@@ -8,7 +8,7 @@ USER 0
 
 ENV HOME=/opt/app-root/src \
   JAVA_VER=1.8.0 \
-  ES_VER=1.5.2 \
+  ES_VER=2.3.3 \
   ES_CONF=/usr/share/elasticsearch/config/elasticsearch.yml \
   INSTANCE_RAM=512G \
   NODE_QUORUM=1 \
@@ -18,7 +18,7 @@ ENV HOME=/opt/app-root/src \
   PLUGIN_LOGLEVEL=INFO
 
 LABEL io.k8s.description="Elasticsearch container to serve as APIMan backend" \
-  io.k8s.display-name="Elasticsearch 1.5.2" \
+  io.k8s.display-name="Elasticsearch ${ES_VER}" \
   io.openshift.expose-services="9200:https, 9300:https" \
   io.openshift.tags="apiman,elasticsearch"
 
@@ -27,7 +27,7 @@ ADD elasticsearch.repo /etc/yum.repos.d/elasticsearch.repo
 RUN rpm --import https://packages.elastic.co/GPG-KEY-elasticsearch && \
     yum install -y --setopt=tsflags=nodocs \
                 java-1.8.0-openjdk \
-                elasticsearch && \
+                elasticsearch-${ES_VER} && \
     yum clean all
 # initial boring elasticsearch.yml is just to enable plugin installation.
 # put the real config in place in a deployment with a ConfigMap.

@@ -13,6 +13,7 @@ ln -s /usr/share/elasticsearch /usr/share/java/elasticsearch
 # TODO: update the following plugins
 #/usr/share/elasticsearch/bin/plugin -i io.fabric8.elasticsearch/openshift-elasticsearch-plugin/0.14
 #/usr/share/elasticsearch/bin/plugin -i io.fabric8/elasticsearch-cloud-kubernetes/1.3.0
+/usr/share/elasticsearch/bin/plugin install io.fabric8/elasticsearch-cloud-kubernetes/2.3.3
 
 mkdir /elasticsearch
 chmod -R og+w /usr/share/java/elasticsearch ${HOME} /elasticsearch

@@ -1,0 +1,33 @@
+searchguard:
+  dynamic:
+    authc:
+      authentication_domain_proxy:
+        enabled: true
+        order: 0
+        authentication_backend:
+          type: com.floragunn.searchguard.auth.internal.NoOpAuthenticationBackend
+        authorization_backend:
+          type: com.floragunn.searchguard.auth.internal.NoOpAuthorizationBackend
+        http_authenticator:
+          type: com.floragunn.searchguard.http.HTTPProxyAuthenticator
+          challenge: false
+          config:
+            user_header: "X-Proxy-Remote-User"
+            roles_header: "x-proxy-roles"
+      authentication_domain_basic_internal:
+        enabled: true
+        order: 0
+        authentication_backend:
+          type: com.floragunn.searchguard.auth.internal.NoOpAuthenticationBackend
+        authorization_backend:
+          type: com.floragunn.searchguard.auth.internal.NoOpAuthorizationBackend
+        http_authenticator:
+          type: com.floragunn.searchguard.http.HTTPClientCertAuthenticator
+          challenge: false
+      http:
+        xff:
+          enabled: true
+          remoteIpHeader: "x-forwarded-for"
+          proxiesHeader: "x-forwarded-by"
+          trustedProxies: ".*"
+          internalProxies: ".*"

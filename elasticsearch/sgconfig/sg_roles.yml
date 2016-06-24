@@ -1,0 +1,28 @@
+sg_role_kibana:
+  cluster:
+      - cluster:monitor/nodes/info
+      - cluster:monitor/health
+  indices:
+    '*':
+      '*':
+        - indices:admin/mappings/fields/get
+        - indices:admin/validate/query
+        - indices:data/read/search-
+        - indices:data/read/msearch
+        - indices:admin/get
+    '?kibana*':
+      '*':
+        - ALL
+
+sg_role_fluentd:
+  indices:
+    '*':
+      '*':
+        - CRUD
+        - CREATE_INDEX
+
+sg_role_curator:
+  indices:
+    '*':
+      '*':
+        - CRUD

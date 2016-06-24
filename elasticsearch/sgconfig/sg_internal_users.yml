@@ -1,0 +1,7 @@
+kibana:
+  roles:
+    - sg_role_kibana
+
+admin:
+  roles:
+    - sg_role_kibana
